@@ -5,6 +5,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from django.core.exceptions import ObjectDoesNotExist
+from phonenumber_field.phonenumber import PhoneNumber
+
 from .auth import get_gapi_credentials
 from .signals import sheet_row_processed
 from . import decorators
@@ -274,6 +276,8 @@ class SheetPushInterface(BaseSheetInterface):
             # print(isinstance(data[field]))
             if isinstance(data[field], datetime):
                 data[field] = data[field].isoformat()
+            if isinstance(data[field], PhoneNumber):
+                data[field] = str(data[field])
             row_data.append(data[field])
 
         # get the row to update if it exists, otherwise we will add a new row
