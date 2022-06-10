@@ -260,6 +260,7 @@ class SheetPushInterface(BaseSheetInterface):
         its previous value
         :param data: `dict` of field/value
         """
+        print('upsert_sheet_data')
         field_indexes = []
         for field in data.keys():
             try:
@@ -274,10 +275,12 @@ class SheetPushInterface(BaseSheetInterface):
         for field, ix in sorted_field_indexes:
             logger.debug(f'writing data in field {field} to col ix {ix}')
             # print(isinstance(data[field]))
+            print(data[field])
             if isinstance(data[field], datetime):
                 data[field] = data[field].isoformat()
             if isinstance(data[field], PhoneNumber):
                 data[field] = str(data[field])
+            print(data[field])
             row_data.append(data[field])
 
         # get the row to update if it exists, otherwise we will add a new row
