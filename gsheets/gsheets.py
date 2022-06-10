@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db.models import DateTimeField
 from phonenumber_field.modelfields import PhoneNumberField
 from googleapiclient.discovery import build
@@ -269,7 +271,9 @@ class SheetPushInterface(BaseSheetInterface):
         row_data = []
         for field, ix in sorted_field_indexes:
             logger.debug(f'writing data in field {field} to col ix {ix}')
-            print(isinstance(data[field]))
+            # print(isinstance(data[field]))
+            if isinstance(data[field], datetime):
+                data[field] = data[field].isoformat()
             row_data.append(data[field])
 
         # get the row to update if it exists, otherwise we will add a new row
