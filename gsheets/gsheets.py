@@ -343,14 +343,14 @@ class SheetPullInterface(BaseSheetInterface):
             for field, value in data.items() if field != self.sheet_id_field and field in model_fields
         }
 
-        for field_name, value in cleaned_data.items():
-            field_obj = getattr(self.model_cls, field_name).field
-            if isinstance(field_obj, DateTimeField):
-                resolved_value = value.isoformat()
-                cleaned_data[field_name] = resolved_value
-            if isinstance(field_obj, PhoneNumberField):
-                resolved_value = str(value)
-                cleaned_data[field_name] = resolved_value
+        # for field_name, value in cleaned_data.items():
+        #     field_obj = getattr(self.model_cls, field_name).field
+        #     if isinstance(field_obj, DateTimeField):
+        #         resolved_value = value.isoformat()
+        #         cleaned_data[field_name] = resolved_value
+        #     if isinstance(field_obj, PhoneNumberField):
+        #         resolved_value = str(value)
+        #         cleaned_data[field_name] = resolved_value
 
         try:
             row_id = data[self.sheet_id_field]
