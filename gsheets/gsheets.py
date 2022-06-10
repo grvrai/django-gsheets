@@ -238,7 +238,7 @@ class SheetPushInterface(BaseSheetInterface):
                 writeout_data = self.sheet_data[writeout_data_start_row:writeout_data_end_row]
 
                 logger.debug(f'writing out {len(writeout_data)} rows of data to {writeout_range}')
-
+                logger.info('writeout_batch')
                 self.writeout_batch([writeout_range], [writeout_data])
                 last_writeout = i
 
@@ -273,7 +273,7 @@ class SheetPushInterface(BaseSheetInterface):
 
         row_data = []
         for field, ix in sorted_field_indexes:
-            logger.debug(f'writing data in field {field} to col ix {ix}')
+            logger.info(f'writing data in field {field} to col ix {ix}')
             # print(isinstance(data[field]))
             logger.info(data[field])
             if isinstance(data[field], datetime):
