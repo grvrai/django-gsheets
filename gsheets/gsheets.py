@@ -269,6 +269,7 @@ class SheetPushInterface(BaseSheetInterface):
         row_data = []
         for field, ix in sorted_field_indexes:
             logger.debug(f'writing data in field {field} to col ix {ix}')
+            print(isinstance(data[field]))
             row_data.append(data[field])
 
         # get the row to update if it exists, otherwise we will add a new row
